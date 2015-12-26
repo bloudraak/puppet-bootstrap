@@ -1,31 +1,43 @@
 # Puppet Bootstrap
 
-This bootstraps Puppet Server for
+This bootstraps Puppet Server for the following operating systems:
 
 * Ubuntu Server 14.04
 
 ## Requirements
 
-* VMware Fusion 8.x
-* Vagrant 1.8.0
+Software 
+* [VMware Fusion 8.x](https://www.vmware.com/products/fusion)
+* [Vagrant 1.8.0](https://www.vagrantup.com)
+
+Hardware
+* Diskspace: 10GB Freespace
+* Memory: 4GB
 
 ## Development
 
-In order to verify your changes
+To clone the repo
 
-	cd /your/project/path
-	git clone https://github.com/wernerstrydom/puppet-bootstrap.git
+	git clone https://github.com/wernerstrydom/puppet-bootstrap.git 
 	cd puppet-bootstrap
+
+This repo uses [Vagrant](https://www.vagrantup.com) for development. To bring the environment up you can run the following command:
+
 	vagrant up
 
-SSH into the VM when Vagrant is done
+To delete the environment
 
-	vagrant ssh
+	vagrant destroy -f
 
-And verify that `puppetserver` is running
+It takes approx. 5 minutes to create a new environment.
 
-	sudo service puppetserver status
+You can then SSH into the puppet server by executing
 
+	vagrant ssh puppet
+
+Or if you’d like to SSH into the agent, you could execute
+
+	vagrant ssh agent
 
 
 

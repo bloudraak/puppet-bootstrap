@@ -1,26 +1,45 @@
-include apt
+node 'puppet' {
 
-apt::source { "puppetlabs_precise" :
-	location	=> "http://apt.puppetlabs.com/",
-	release		=> "precise",
-	repos		=> " main",
-	include_src	=> false
+	include apt
+
+	apt::source { "puppetlabs_precise" :
+		location	=> "http://apt.puppetlabs.com/",
+		release		=> "precise",
+		repos		=> " main",
+		include_src	=> false
+	}
+
+	package { ['puppetserver'] :
+		ensure 		=> latest
+	}
+
+	file { "/etc/default/puppetserver":
+		source 		=>"puppet:///modules/puppetserver/puppetserver",
+		ensure 		=> file,
+	}
+
+	service { 'puppetserver':
+		ensure		=> running,
+		enable		=> true,
+		require		=> [
+			Package['puppetserver'],
+			File['/etc/default/puppetserver'],
+		]
+	}
+
 }
 
-package { ['puppetserver'] :
-	ensure 		=> latest
-}
 
-file { "/etc/default/puppetserver":
-	source 		=>"puppet:///modules/puppetserver/puppetserver",
-	ensure 		=> file,
-}
+node 'default' {
 
-service { 'puppetserver':
-	ensure		=> running,
-	enable		=> true,
-	require		=> [
-		Package['puppetserver'],
-		File['/etc/default/puppetserver'],
-	]
+	include apt
+
+	apt::source { "puppetlabs_precise" :
+		location	=> "http://apt.puppetlabs.com/",
+		release		=> "precise",
+		repos		=> " main",
+		include_src	=> false
+	}
+
+
 }
