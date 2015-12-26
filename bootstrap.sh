@@ -25,4 +25,7 @@ apt-get -q update >/dev/null
 rm "/tmp/$PACKAGE"
 
 apt-get -y install puppet-agent
-/opt/puppetlabs/bin/puppet apply --verbose /vagrant/manifests/default.pp
+
+/opt/puppetlabs/bin/puppet module install puppetlabs-apt
+
+/opt/puppetlabs/bin/puppet apply --verbose /etc/puppetlabs/code/environments/production/manifests/site.pp

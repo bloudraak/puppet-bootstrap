@@ -1,5 +1,9 @@
 # Puppet Bootstrap
 
+This bootstraps Puppet Server for
+
+* Ubuntu Server 14.04
+
 ## Requirements
 
 * VMware Fusion 8.x
@@ -18,22 +22,11 @@ SSH into the VM when Vagrant is done
 
 	vagrant ssh
 
-And verify that a text file was created
+And verify that `puppetserver` is running
 
-	ls /tmp
+	sudo service puppetserver status
 
-	drwxrwxrwt  7 root    root    4096 Dec 25 18:19 .
-	drwxr-xr-x 23 root    root    4096 Dec 25 18:18 ..
-	-rw-r--r--  1 root    root      16 Dec 25 18:19 test.txt
-	-rwx--x--x  1 vagrant vagrant   30 Dec 25 18:18 vagrant-shell
-	-rw-r--r--  1 root    root    1600 Dec 25 18:18 vgauthsvclog.txt.0
-	drwxr-xr-x  2 root    root    4096 Dec 25 18:18 vmware-config0
-	drwxrwxrwt  2 root    root    4096 Dec 25 18:23 VMwareDnD
-	drwxr-xr-x  2 root    root    4096 Dec 25 18:17 vmware-file-mod0
-	drwxr-xr-x  2 root    root    4096 Dec 25 18:18 vmware-fonts0
-	drwx------  2 root    root    4096 Dec 25 18:18 vmware-root
 
-The presence of a test.txt file indicates that puppet was installed and that it was succesfully applied.
 
 
 

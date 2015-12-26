@@ -14,10 +14,13 @@ Vagrant.configure(2) do |config|
 		puppet.vm.network "private_network", type: "dhcp"
 		puppet.vm.network "forwarded_port", guest: 8140, host: 8140, auto_correct: true
 
+		config.vm.synced_folder "modules/", "/etc/puppetlabs/code/environments/production/modules/"
+		config.vm.synced_folder "manifests/", "/etc/puppetlabs/code/environments/production/manifests/"
+
 		config.vm.provision "shell", inline: <<-SHELL
 			sudo /vagrant/bootstrap.sh
 		SHELL
 
 	end
-	
+
 end
